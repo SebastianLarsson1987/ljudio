@@ -1,34 +1,35 @@
 <template>
   <div>
-    <h1>Resultaten ska komma här</h1>
-    ---------
-    <section v-for="item in song.content" :key="item.videoId">
-        <table>
-            <thead>
-          <tr>
-            <td>Artist</td>
-            <td>Låt</td>
-            <td>videoId</td>
-            <td>knappar</td>
-          </tr>
+    
+        <div class="container table-responsive py-5">
+          <table class="table table-bordered table hoover">
+            <thead class="thead-dark">
+              <tr>
+                 <th scope="col">Artist</th>
+                 <th scope="col">Låt</th>
+                  <th scope="col">VideoID</th>
+                  <th scope="col">Lägg till i kö</th>
+              </tr>
             </thead>
-          <tr>
-            <td>{{item.album.name}}</td>
-            <td> {{item.name}}</td>
-            <td> {{item.videoId}}</td>
-            <td><button @click="playSong(item)"><i class="fas fa-play"></i></button></td>
-          </tr>
-        </table>
 
+            <tbody  v-for="item in song.content" :key="item.videoId">
+                <tr >
+                <td @click="playSong(item)"><p>{{item.album.name}}</p></td>
+                <td @click="playSong(item)"><p>{{item.name}}</p></td>
+                <td><p>{{item.videoId}}</p></td>
+                <td @click="addSongToQueue(item)"><i class="fas fa-plus-circle"></i></td>
+           </tr>
+            </tbody>
+          </table>
+        </div>
       
-    </section>
-    ---------
-    <button @click="helloWorld()">tryck mig</button>
+   
   </div>
 </template>
 
 <script>
   export default {
+    
     computed:{
       song(){
         return this.$store.state.song
@@ -36,17 +37,38 @@
     },
     methods:{
       playSong(id){
-        console.log(id)
         window.player.loadVideoById(id)
+        // let data = {name: id.name, artist: id.artist, id:id.videoId}
+        let credentials = {name: id.name, artist: id.artist.name}
+        this.$store.dispatch('playSong', credentials)
+        this.$store.dispatch('currentSong', credentials)
+        },
+      addSongToQueue(id){
+        let credentials = {videoId: id.videoId, name: id.name, artist: id.artist.name}
+        
+        this.$store.dispatch('addSongToQueue', credentials) 
       }
-      }
+      },
+      
     }
   
 </script>
 
 <style>
-body{
+
+p{
+  color:black;
+}
+table{
+  overflow: auto;
+  height:10px;
+  width:240px;
   
 }
 
+tr:hover{
+  
+  background-color:black;
+  opacity:0.5;
+}
 </style>

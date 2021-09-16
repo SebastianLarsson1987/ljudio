@@ -1,18 +1,25 @@
 <template>
   <div>
     <form @submit.prevent="welcome()">
+      <div class="md-form mt-0">
       <label for="searchTerm">Enter your search</label>
-      <input class="u-full-width" type="text" v-model="searchTerm">
-      <button type="submit">Search</button>
+      <input class="form-control" type="text" v-model="searchTerm">
+      <button type="submit" class="searchButton">Search</button>
+      </div>
     </form>
     <h3>{{searchTerm}}</h3>
     
-    <button @click.prevent="helloWorld()">Tryck mig</button>
+    <Result/>
+    
   </div>
 </template>
 
 <script>
+import Result from '/src/components/Result.vue'
   export default {
+    components:{
+      Result
+    },
     data(){
       return{
         searchTerm: ""

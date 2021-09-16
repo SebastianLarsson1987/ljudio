@@ -5,7 +5,7 @@
 [] Som användare vill jag kunna söka på album och få en lista med sökresultat
 [x] Som användare vill jag kunna spela upp en låt
 [x] Som användare vill jag kunna pausa en låt
-[] Som användare vill jag kunna hoppa till nästa låt
+[x] Som användare vill jag kunna hoppa till nästa låt
 [] Som användare vill jag kunna hoppa till föregående låt
 [] Som användare vill jag kunna dela en låt med en länk
 [] Som användare vill jag kunna dela ett album med en länk
@@ -17,3 +17,17 @@
 [] Som användare vill jag kunna köa låtar så att mina favoritlåtar spelas upp efter varandra
 [] Som användare vill jag kunna ändra ordningen på mina köade låtar så att de spelas upp efter mina önskemål
 [] Som användare vill jag kunna välja hur många sökresultat i taget som ska visas efter en sökning.
+
+
+
+************************************************************************************************
+lägga till volymkontrolelr
+visa dina senaste sökningar
+if sats runt nu spelas så det inte visas när det inte spelar något
+uppdatera nu spelas när man byter låt
+
+
+att göra 
+spela föregående låt
+när man spelar upp en låt ska den läggas till playedSongs arrayen
+lägga till lite felhantering

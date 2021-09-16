@@ -1,38 +1,52 @@
 <template>
   <div>
-   
-  <Player/>
- 
-   
+    <Player/>
+    
+    <div>
+    <router-view/>
+    </div>
 
+    
+    <!-- <Search/> -->
+   
+    
+    <aside>
+      <router-link to="/queue">Queue</router-link>
+      <router-link to="/popular-songs">Popular Songs</router-link>
+      <router-link to="/search">Search</router-link>
+   </aside>
   </div>
   
-  <Search/>
-  <Result/>
 </template>
 
 <script>
 import Player from "/src/components/Player.vue"
-import Search from "/src/components/Search.vue"
-import Result from "/src/components/Result.vue"
 
 export default{
   components:{
     Player,
-    Search,
-    Result
+    
   },
   created(){
-    this.$store.dispatch('fetchArtist')
-    this.$store.dispatch('fetchSong')
-    this.$store.dispatch('welcome')
+    
   }
 }
 
 </script>
 
 <style>
-
+aside{
+  position:fixed;
+  top: 40vh;
+  height:50vh;
+  width:5vw;
+  background-color:black;
+  border-radius:0 20px 20px 0;
+  
+}
+aside>p{
+  color:white;
+}
 body{
   margin:0;
   padding: 0;
