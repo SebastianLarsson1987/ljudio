@@ -5,6 +5,7 @@
       <label for="searchTerm">Enter your search</label>
       <input class="form-control" type="text" v-model="searchTerm">
       <button type="submit" class="searchButton">Search</button>
+      
       </div>
     </form>
     <h3>{{searchTerm}}</h3>

@@ -5,14 +5,14 @@ export default createStore({
     currentSong:[],
     song:[],
     songQueue:[],
-    playedSongs:[]
+    playedSongs:[],
+    SongArtistAlbum:[]
   },
   mutations: {
     updateSong(state, data){
         state.song = data;
     },
     updateCurrentSong(state, value){
-      
       state.currentSong = value
     },
     addSongToQueue(state, data){
@@ -25,14 +25,23 @@ export default createStore({
     updatePlaylist(state){
       let song = state.songQueue.shift()
       state.playedSongs.push(song)
+    },
+    updateAllSongArtistAlbum(state, data){
+      state.SongArtistAlbum = data
     }
   },
   actions: {
     async fetchSong({commit}, searchString){
       let response = await fetch("https://yt-music-api.herokuapp.com/api/yt/songs/" +searchString);
-      var data = await response.json();
-      
+      let data = await response.json();
+      // this.$router.push("/search")
       commit('updateSong', data)
+    },
+    async fetchAll({commit}, searchTerm){
+        let response = await fetch('https://yt-music-api.herokuapp.com/api/yt/search/' +searchTerm);
+        let data = await response.json()
+        console.log(data)
+        commit('updateAllSongArtistAlbum', data )
     },
 
     currentSong({commit}, credentials){
@@ -50,9 +59,8 @@ export default createStore({
       console.log(data)
       commit('updatePlaylist')
     },
-    playSong(data){
+    playSong( data){
       console.log(data)
-
     }
 
   },

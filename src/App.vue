@@ -1,8 +1,12 @@
 <template>
   <div>
-    <Player/>
+
+
     
+    <Player/>
+    <NewSearch></NewSearch>
     <div>
+      <NewResult></NewResult>
     <router-view/>
     </div>
 
@@ -21,10 +25,14 @@
 
 <script>
 import Player from "/src/components/Player.vue"
+import NewSearch from "/src/components/NewSearch.vue"
+import NewResult from "./components/NewResult.vue"
 
 export default{
   components:{
     Player,
+    NewSearch,
+    NewResult
     
   },
   created(){

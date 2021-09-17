@@ -41,7 +41,6 @@ export default {
       this.$store.dispatch('emptyCurrentSong')
     },
     playNexSongInQueue(id){
-      console.log(id.videoId)
       window.player.loadVideoById(id.videoId)
       this.$store.dispatch('playNextSongAndRemoveFromQueu', id)
       
@@ -93,9 +92,10 @@ i{
   width: 70%;
   display:flex;
   flex-direction: row;
- 
+  
 }
 .player-controls{
   margin:0;
+  
 }
 </style>

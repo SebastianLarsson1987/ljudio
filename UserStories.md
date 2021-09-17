@@ -2,7 +2,7 @@
 
 [x] Som användare vill jag kunna söka på låtar och få en lista med sökresultat
 [x] Som användare vill jag kunna söka på artister och få en lista med sökresultat
-[] Som användare vill jag kunna söka på album och få en lista med sökresultat
+[x] Som användare vill jag kunna söka på album och få en lista med sökresultat
 [x] Som användare vill jag kunna spela upp en låt
 [x] Som användare vill jag kunna pausa en låt
 [x] Som användare vill jag kunna hoppa till nästa låt
