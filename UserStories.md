@@ -6,7 +6,7 @@
 [x] Som användare vill jag kunna spela upp en låt
 [x] Som användare vill jag kunna pausa en låt
 [x] Som användare vill jag kunna hoppa till nästa låt
-[] Som användare vill jag kunna hoppa till föregående låt
+[x] Som användare vill jag kunna hoppa till föregående låt
 [] Som användare vill jag kunna dela en låt med en länk
 [] Som användare vill jag kunna dela ett album med en länk
 [] Som användare vill jag kunna dela en artist med en länk
@@ -35,3 +35,8 @@ lägga till lite felhantering
 få till thead i result att bli sticky
 kanske byta bilder i popuilar songs
 behövs navigationen i header
+fixa en logga 
+spela föregående låt funkar inte helt som det ska. 
+spela playlist
+updatera vilken låt som spelar överallt
+kan man få search history på något snyggt sätt

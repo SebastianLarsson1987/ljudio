@@ -36,10 +36,10 @@
     methods:{
       playSong(id){
         window.player.loadVideoById(id)
-        let playSong = {name: id.name, artist: id.artist, videoId:id.videoId}
+        // let songPlaying = {name: id.name, artist: id.artist, videoId:id.videoId}
         // let data = {name: id.name, artist: id.artist, id:id.videoId}
-        let credentials = {name: id.name, artist: id.artist.name}
-        this.$store.dispatch('playSong', playSong)
+        let credentials = {name: id.name, artist: id.artist.name, videoId:id.videoId}
+        // this.$store.dispatch('playSong', songPlaying)
         this.$store.dispatch('currentSong', credentials)
         },
       addSongToQueue(id){

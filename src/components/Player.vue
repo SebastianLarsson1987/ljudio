@@ -7,14 +7,37 @@
           <i class="fas fa-pause-circle" @click="pause()"></i>
           <i class="fas fa-chevron-circle-left" @click="playLastSongPlayed(this.playedSongs[this.playedSongs.length - 1])"></i>
           <i class="fas fa-chevron-circle-right" @click="playNexSongInQueue(this.songQueue[0])"></i>
-           <i class="fas fa-chevron-circle-down" ></i>
- 
-          
-          
-          <!-- <router-link to="/queue"><i class="fas fa-chevron-circle-down"></i></router-link> -->
+          <i class="fas fa-chevron-circle-down" data-toggle="modal" data-target="#myModal"></i>
        </div>
- 
+        
+        <!-- The Modal -->
+        <div class="modal" id="myModal">
+          <div class="modal-dialog modal-dialog-centered" >
+            <div class="modal-content">
 
+              <!-- Modal Header -->
+              <div class="modal-header">
+                <h4 class="modal-title">Share your favorite music</h4>
+                
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+
+              <!-- Modal body -->
+              <div class="modal-body">
+                <p>Track</p>
+                <input type="search" :placeholder="this.url + currentSong.name">
+                <h4>Artist</h4>
+                <p>{{currentSong.artist}}</p>
+              </div>
+
+              <!-- Modal footer -->
+              <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+              </div>
+
+            </div>
+          </div>
+        </div>
 
 
        <div class="nowPlaying">
@@ -28,20 +51,12 @@
 
 <script>
 
-
-
-
 export default {
-  ready(){
-document.querySelector(".Click-here").on('click', function() {
-  document.querySelector(".custom-model-main").addClass('model-open');
-}); 
-document.querySelector(".close-btn, .bg-overlay").click(function(){
-  document.querySelector(".custom-model-main").removeClass('model-open');
-});
-
-
+  data(){
+    return{
+    }
   },
+
   
   methods:{
     play(id){
@@ -66,6 +81,7 @@ document.querySelector(".close-btn, .bg-overlay").click(function(){
     },
     playLastSongPlayed(id){
       window.player.loadVideoById(id.videoId)
+      this.$store.dispatch('playLastSong')
 
     }
     
@@ -85,7 +101,21 @@ document.querySelector(".close-btn, .bg-overlay").click(function(){
 }
 </script>
 <style>
-
+.modal-backdrop.show{
+  z-index:-1;
+  position:fixed;
+  bottom:0;
+}
+.modal-dialog{
+ align-items:center;
+ color:black;
+}
+h4{
+  color:black;
+}
+.modal-body>p{
+  color:black;
+}
 .top{
   display:flex;
   flex-direction: column;
@@ -95,15 +125,10 @@ document.querySelector(".close-btn, .bg-overlay").click(function(){
   border-top:1px solid grey;
   width:100vw;
   height:12vh;
+  background-color:black;
 }
-.top>h1{
-  font-size:200%;
-  margin:0 2vw 2vh 0;
-}
-i{
-  font-size:200%;
-  cursor:pointer;
-  margin-left:1vw;
+.player-controls>i{
+  margin-top: 1vh;
 }
 .currentSong{
   font-weight: bold;
@@ -116,7 +141,7 @@ i{
 .player-controls{
   display:flex;
   justify-content:space-evenly;
-  
+  background-color:black;
 }
 
 

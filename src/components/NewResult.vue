@@ -1,6 +1,6 @@
 
 <template>
-  <div>
+  <div class="resultContainer">
     <router-view>  </router-view>
     <div class="artist">
        <div v-for="item in SongArtistAlbum.content" :key="item.videoId" class="test">
@@ -42,15 +42,15 @@ import router from '../router'
        playSong(id){
         window.player.loadVideoById(id)
         let credentials = {name: id.name, artist: id.artist.name}
-        this.$store.dispatch('addSong', credentials)
         this.$store.dispatch('currentSong', credentials)
+        this.$store.dispatch('addSong', credentials)
        },
        addSongToQueue(item){
          let credentials = {name: item.name, artist: item.artist.name}
          this.$store.dispatch('addSongToQueue', credentials) 
        },
        searchArtist(item){
-         console.log(item)
+         
          this.$store.dispatch('fetchSong', item)
          router.push("/result")
        }
@@ -77,7 +77,9 @@ import router from '../router'
   margin-left: 5vw;
   text-align: center;
 }
-
+.resultContainer{
+  margin-bottom:25vh;
+}
 
 </style>
 

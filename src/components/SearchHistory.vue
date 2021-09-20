@@ -1,20 +1,30 @@
 <template>
   <div>
     <h1>Search History</h1>
-    <p v-for="(search, i) in searchHistory" :key="i">{{search}}</p>
+    <div class="searchHistory">
+      <p v-for="(search, i) in searches" :key="i" @click.prevent="fethArtistFromSearchHistory(search)">{{search}}</p>
+    </div>
   </div>
 </template>
 
 <script>
+import router from '../router'
   export default {
     data(){
      return{
 
      }
     },
+    methods:{
+      fethArtistFromSearchHistory(item){
+        console.log(item)
+        this.$store.dispatch('fetchSong', item)
+         router.push("/result")
+      }
+    },
     computed:{
-      searchHistory(){
-        return this.$store.state.searchHistory;
+      searches(){
+        return this.$store.state.searches;
       }
     }
     
@@ -24,5 +34,11 @@
 <style>
 p{
   color:white;
+  margin-left:2vw;
+}
+.searchHistory{
+  height:auto;
+  width:100vw;
+  column-count:3;
 }
 </style>

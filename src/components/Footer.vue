@@ -22,9 +22,7 @@
 </script>
 
 <style>
-body{
-  background-color:black;
-}
+
 .footerButton {
   display: flex;
   flex-direction: row;
@@ -34,11 +32,13 @@ body{
   
   margin:0;
 }
+
 i{
   font-size:5vh;
   color:white;
   margin-top: 1vh;;
   margin-bottom: 0;
+ 
 
 }
 .footerText{
@@ -49,12 +49,15 @@ i{
 }
 .footerText>p{
   color:white;
+  margin:0;
 }
 .footerContainer{
   display: flex;
   flex-direction: column;
   border-top: 1px solid grey;
-  
+  background-color:black;
   width:100vw;
+  height: 12vh;
+  justify-content:center;
 }
 </style>

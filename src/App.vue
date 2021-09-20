@@ -1,9 +1,14 @@
 <template>
   <div>
-    <div>
+    <div class="header">
       <Header/>
     </div>
-      <router-view></router-view>
+    
+      <div class="router">
+
+       <router-view></router-view>
+
+      </div>
     <div class="footer">
       <Player/>
       <Footer/>
@@ -36,8 +41,8 @@ export default{
 </script>
 
 <style>
-body{
-  background-color:black;
+body html{
+  margin:0;
 }
  .footer{
    position: fixed;
@@ -48,9 +53,8 @@ body{
    text-align: center;
    color:white;
  }
- .router-view{
-   height:70vh;
+ .router{
+   width:100vw;
+   margin-bottom: 24vh;
  }
- 
-
 </style>

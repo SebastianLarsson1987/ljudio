@@ -8,22 +8,22 @@ export default createStore({
     songQueue:[],
     playedSongs:[],
     SongArtistAlbum:[],
-    title: "Ljudia",
+    title: "Ljudio",
     searches:[]
   },
   mutations: {
     addToSearches(state, data){
-      state.searches = data
+      state.searches.push(data)
     },
     updateSong(state, data){
         state.song = data;
     },
     updateCurrentSong(state, value){
       state.currentSong = value
+      state.playedSongs.push(value)
     },
     addSongToQueue(state, data){
       state.songQueue.push(data)
-      //lägg till i arrayen
     },
     currentSongEmpty(state){
       state.currentSong =0
@@ -34,16 +34,17 @@ export default createStore({
     },
     updateAllSongArtistAlbum(state, data){
       state.SongArtistAlbum = data
-      
     },
     addSongToPlayedsongs(state, data){
       state.playedSongs = data.song
-      console.log(data)
     },
     removeSongFromQue(state, data){
         let number = state.songQueue.indexOf(data) 
         state.songQueue.splice(number, 1)
-      }
+    },
+    removeFromLastPlayed(state){
+      state.playedSongs.pop()
+    }
   },
   actions: {
     async fetchSong({commit}, searchString){
@@ -55,16 +56,13 @@ export default createStore({
     async fetchAll({commit}, searchTerm){
         let response = await fetch('https://yt-music-api.herokuapp.com/api/yt/search/' +searchTerm);
         let data = await response.json()
-        
         commit('updateAllSongArtistAlbum', data )
     },
 
     currentSong({commit}, credentials){
-      
       commit('updateCurrentSong', credentials)
     },
     addSongToQueue({commit}, credentials){
-     
       commit('addSongToQueue', credentials)
     },
     emptyCurrentSong({commit}){
@@ -74,16 +72,17 @@ export default createStore({
       console.log(data)
       commit('updatePlaylist')
     },
-    addSong(data ){
-      console.log("hej")
-      console.log(data)
+    addSong({commit}, data ){
+      commit('addSongToPlayedsongs', data)
     },
     addSearchToSearches({commit} ,data){
       commit('addToSearches', data)
     },
     removeQueuedSong({commit}, data){
-      
       commit('removeSongFromQue', data)
+    },
+    playLastSong({commit}){
+      commit('removeFromLastPlayed')
     }
   },
     

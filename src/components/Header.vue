@@ -1,13 +1,8 @@
 <template>
   <div class="headerTop">
-    
-        <i class="fas fa-arrow-left"></i>
-        <i class="fas fa-arrow-right"></i>
-
- 
-    <h1>{{title}}</h1>
-
- 
+        <i class="fas fa-arrow-left" @click="$router.go(-1)"></i>
+          <h1>{{title}}</h1>
+        <i class="fas fa-arrow-right" @click="$router.go(1)"></i>
   </div>
 </template>
 
@@ -16,6 +11,9 @@
     computed:{
       title(){
         return this.$store.state.title;
+      },
+      playedSongs(){
+        return this.$store.state.playedSongs;
       }
     }
   }
@@ -26,12 +24,16 @@
 .headerTop{
   border-bottom: 1px solid grey;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+  height: 7vh;
+ 
 }
-h1{
+.headerTop>h1{
   margin-bottom:0;
-  flex-grow: 1
+  
+}
+i{
+  margin:0 2vw 0 2vw;
 }
 
 

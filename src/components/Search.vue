@@ -7,21 +7,20 @@
             <button type="submit" class="btn btn-outline-secondary" >Search</button>
          </div>
     </div>
-      <SearchHistory/>
     </form>
+     
         <router-view></router-view>
+      
     
   </div>
 </template>
 
 <script>
 import router from "../router";
-import SearchHistory from './SearchHistory.vue'
 
 
   export default {
     components:{
-      SearchHistory
     },
     data(){
       return{
@@ -30,9 +29,8 @@ import SearchHistory from './SearchHistory.vue'
     },
     methods:{
       fetchSong(){
-        let search = this.searchTerm
         this.$store.dispatch("fetchAll", this.searchTerm);
-        this.$store.dispatch('addSearchToSearches', search)
+        this.$store.dispatch('addSearchToSearches', this.searchTerm)
         router.push("/newResult")
       }
     },

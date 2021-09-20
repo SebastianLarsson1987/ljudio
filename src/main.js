@@ -6,6 +6,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap";
 
 
+
 import '../public/style.css'
 
 createApp(App).use(store).use(router).mount('#app')
