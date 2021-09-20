@@ -7,21 +7,41 @@
           <i class="fas fa-pause-circle" @click="pause()"></i>
           <i class="fas fa-chevron-circle-left" @click="playLastSongPlayed(this.playedSongs[this.playedSongs.length - 1])"></i>
           <i class="fas fa-chevron-circle-right" @click="playNexSongInQueue(this.songQueue[0])"></i>
-          <router-link to="/queue"><i class="fas fa-chevron-circle-down"></i></router-link>
+           <i class="fas fa-chevron-circle-down" ></i>
+ 
+          
+          
+          <!-- <router-link to="/queue"><i class="fas fa-chevron-circle-down"></i></router-link> -->
        </div>
+ 
+
+
+
        <div class="nowPlaying">
          <p class="currentSong" v-if="!currentSong.length>=1"> {{currentSong.artist}}  {{currentSong.name}}</p>
        </div>
-       <div class="songInfo">
-         <p>hej</p>
-       </div>
+       
       <div id="yt-player"></div>
      </div>
   </div>
 </template>
 
 <script>
+
+
+
+
 export default {
+  ready(){
+document.querySelector(".Click-here").on('click', function() {
+  document.querySelector(".custom-model-main").addClass('model-open');
+}); 
+document.querySelector(".close-btn, .bg-overlay").click(function(){
+  document.querySelector(".custom-model-main").removeClass('model-open');
+});
+
+
+  },
   
   methods:{
     play(id){
@@ -98,4 +118,6 @@ i{
   justify-content:space-evenly;
   
 }
+
+
 </style>
