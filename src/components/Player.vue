@@ -1,10 +1,6 @@
 <template>
   <div>
      <div class="top">
-       <h1>Ljudio</h1>
-       <div class="nowPlaying">
-         <p class="currentSong" v-if="!currentSong.length>=1"> Nu spelas: {{currentSong.name}}  {{currentSong.artist}}</p>
-       </div>
         <div class="player-controls">
           <i class="fas fa-play-circle" @click="play()" ></i>
           <i class="fas fa-stop-circle" @click="stop()"></i>
@@ -13,8 +9,10 @@
           <i class="fas fa-chevron-circle-right" @click="playNexSongInQueue(this.songQueue[0])"></i>
           <router-link to="/queue"><i class="fas fa-chevron-circle-down"></i></router-link>
        </div>
-       <p v-if="songQueue.length>=1">{{songQueue}}</p>
-       <p v-else>{{playedSongs}}</p>
+       <div class="nowPlaying">
+         <p class="currentSong" v-if="!currentSong.length>=1"> {{currentSong.artist}}  {{currentSong.name}}</p>
+       </div>
+       
       <div id="yt-player"></div>
      </div>
   </div>
@@ -28,6 +26,7 @@ export default {
       // calling global variable
       window.player.loadVideoById(id)
       window.player.playVideo()
+      this.$state.dispatch('playSong', id)
       
     },
     pause(){
@@ -69,12 +68,13 @@ export default {
 
 .top{
   display:flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
-  margin-bottom: 3vh;
-  border-bottom: 1px solid black;
-  justify-content:center;
+  margin:0;
   align-items: center;
+  border-top:1px solid grey;
+  width:100vw;
+  height:12vh;
 }
 .top>h1{
   font-size:200%;
@@ -88,14 +88,14 @@ i{
 .currentSong{
   font-weight: bold;
 }
-.nowPlaying{
-  width: 70%;
-  display:flex;
-  flex-direction: row;
+.nowPlaying>p{
+  color:white;
+  text-align: center;
   
 }
 .player-controls{
-  margin:0;
+  display:flex;
+  justify-content:space-evenly;
   
 }
 </style>

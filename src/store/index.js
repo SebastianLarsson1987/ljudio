@@ -1,14 +1,20 @@
 import { createStore } from 'vuex'
 
+
 export default createStore({
   state: {
     currentSong:[],
     song:[],
     songQueue:[],
     playedSongs:[],
-    SongArtistAlbum:[]
+    SongArtistAlbum:[],
+    title: "Ljudia",
+    searches:[]
   },
   mutations: {
+    addToSearches(state, data){
+      state.searches = data
+    },
     updateSong(state, data){
         state.song = data;
     },
@@ -28,19 +34,28 @@ export default createStore({
     },
     updateAllSongArtistAlbum(state, data){
       state.SongArtistAlbum = data
-    }
+      
+    },
+    addSongToPlayedsongs(state, data){
+      state.playedSongs = data.song
+      console.log(data)
+    },
+    removeSongFromQue(state, data){
+        let number = state.songQueue.indexOf(data) 
+        state.songQueue.splice(number, 1)
+      }
   },
   actions: {
     async fetchSong({commit}, searchString){
+      console.log(searchString)
       let response = await fetch("https://yt-music-api.herokuapp.com/api/yt/songs/" +searchString);
       let data = await response.json();
-      // this.$router.push("/search")
       commit('updateSong', data)
     },
     async fetchAll({commit}, searchTerm){
         let response = await fetch('https://yt-music-api.herokuapp.com/api/yt/search/' +searchTerm);
         let data = await response.json()
-        console.log(data)
+        
         commit('updateAllSongArtistAlbum', data )
     },
 
@@ -59,10 +74,17 @@ export default createStore({
       console.log(data)
       commit('updatePlaylist')
     },
-    playSong( data){
+    playSong(data ){
+      console.log("detta är senaste låten att spelas")
       console.log(data)
+    },
+    addSearchToSearches({commit} ,data){
+      commit('addToSearches', data)
+    },
+    removeQueuedSong({commit}, data){
+      
+      commit('removeSongFromQue', data)
     }
-
   },
     
 

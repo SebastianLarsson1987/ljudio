@@ -1,25 +1,27 @@
 <template>
   <div>
-    <form @submit.prevent="welcome()">
-      <div class="md-form mt-0">
-      <label for="searchTerm">Enter your search</label>
-      <input class="form-control" type="text" v-model="searchTerm">
-      <button type="submit" class="searchButton">Search</button>
-      
-      </div>
+    <form @submit.prevent="fetchSong()">
+      <div class="input-group mb-3">
+          <input type="text" class="form-control" placeholder="Search" aria-label="Recipient's username" aria-describedby="basic-addon2" v-model="searchTerm">
+          <div class="input-group-append">
+            <button type="submit" class="btn btn-outline-secondary" >Search</button>
+         </div>
+    </div>
+      <SearchHistory/>
     </form>
-    <h3>{{searchTerm}}</h3>
-    
-    <Result/>
+        <router-view></router-view>
     
   </div>
 </template>
 
 <script>
-import Result from '/src/components/Result.vue'
+import router from "../router";
+import SearchHistory from './SearchHistory.vue'
+
+
   export default {
     components:{
-      Result
+      SearchHistory
     },
     data(){
       return{
@@ -27,13 +29,14 @@ import Result from '/src/components/Result.vue'
       }
     },
     methods:{
-      welcome(){
-        this.$store.dispatch("fetchSong", this.searchTerm);
+      fetchSong(){
+        let search = this.searchTerm
+        this.$store.dispatch("fetchAll", this.searchTerm);
+        this.$store.dispatch('addSearchToSearches', search)
+        router.push("/newResult")
       }
     },
-    helloWorld(){
-      this.$store.dispatch("hello")
-    },
+    
       
     // computed:{
     //   song(){
@@ -45,6 +48,9 @@ import Result from '/src/components/Result.vue'
   }
 </script>
 
-<style lang="scss" scoped>
+<style>
+.input-group{
+  margin: 0 1vw 0 1vw;
+}
 
 </style>

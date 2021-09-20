@@ -1,14 +1,13 @@
 <template>
   <div>
-    <h1>Här är din kö</h1>
+    <h1>Queued songs</h1>
     <div class="container table-responsive py-5">
-          <table class="table table-bordered table hoover">
+          <table class="">
             <thead class="thead-dark">
               <tr>
                  <th scope="col">Artist</th>
                  <th scope="col">Låt</th>
-                  <th scope="col">VideoID</th>
-                  <th scope="col">Lägg till i kö</th>
+                  <th scope="col">Remove</th>
               </tr>
             </thead>
 
@@ -16,8 +15,7 @@
                 <tr >
                 <td @click="playSong(item)"><p>{{item.artist}}</p></td>
                 <td @click="playSong(item)"><p>{{item.name}}</p></td>
-                <td><p>{{item.videoId}}</p></td>
-                <td @click="addSongToQueue(item)"><i class="fas fa-plus-circle"></i></td>
+                <td @click="removeSongFromQueue(item)"><i class="fas fa-minus-circle"></i></td>
            </tr>
             </tbody>
           </table>
@@ -27,15 +25,25 @@
 
 <script>
   export default {
+    methods:{
+      removeSongFromQueue(item){
+       this.$store.dispatch("removeQueuedSong", item)
+      }
+    },
   computed:{
     songQueue(){
       return this.$store.state.songQueue;
     }
-  }
+  },
+ 
   
   }
 </script>
 
-<style lang="scss" scoped>
+<style>
+table{
+  border:0;
+}
+
 
 </style>
