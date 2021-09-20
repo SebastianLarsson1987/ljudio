@@ -50,7 +50,6 @@ body{
  }
  .router-view{
    height:70vh;
-   
  }
  
 

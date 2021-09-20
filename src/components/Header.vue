@@ -25,6 +25,13 @@
 
 .headerTop{
   border-bottom: 1px solid grey;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+h1{
+  margin-bottom:0;
+  flex-grow: 1
 }
 
 

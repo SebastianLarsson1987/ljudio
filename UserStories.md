@@ -33,3 +33,5 @@ när man spelar upp en låt ska den läggas till playedSongs arrayen
 lägga till lite felhantering
 
 få till thead i result att bli sticky
+kanske byta bilder i popuilar songs
+behövs navigationen i header

@@ -74,8 +74,8 @@ export default createStore({
       console.log(data)
       commit('updatePlaylist')
     },
-    playSong(data ){
-      console.log("detta är senaste låten att spelas")
+    addSong(data ){
+      console.log("hej")
       console.log(data)
     },
     addSearchToSearches({commit} ,data){

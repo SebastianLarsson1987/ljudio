@@ -12,7 +12,9 @@
        <div class="nowPlaying">
          <p class="currentSong" v-if="!currentSong.length>=1"> {{currentSong.artist}}  {{currentSong.name}}</p>
        </div>
-       
+       <div class="songInfo">
+         <p>hej</p>
+       </div>
       <div id="yt-player"></div>
      </div>
   </div>
@@ -26,8 +28,6 @@ export default {
       // calling global variable
       window.player.loadVideoById(id)
       window.player.playVideo()
-      this.$state.dispatch('playSong', id)
-      
     },
     pause(){
       window.player.pauseVideo()

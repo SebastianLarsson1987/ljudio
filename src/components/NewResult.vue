@@ -40,9 +40,9 @@ import router from '../router'
   export default {
     methods:{
        playSong(id){
-         window.player.loadVideoById(id)
-         let credentials = {name: id.name, artist: id.artist.name}
-        this.$store.dispatch('playSong', credentials)
+        window.player.loadVideoById(id)
+        let credentials = {name: id.name, artist: id.artist.name}
+        this.$store.dispatch('addSong', credentials)
         this.$store.dispatch('currentSong', credentials)
        },
        addSongToQueue(item){
