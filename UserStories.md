@@ -15,7 +15,7 @@
 [] Som användare vill jag kunna se var i låten jag är, med en tidslinje (progress bar)
 [] Som användare vill jag kunna välja i tidslinjen så att låten (fortsätter) spelas upp vid den valda tiden
 [x] Som användare vill jag kunna köa låtar så att mina favoritlåtar spelas upp efter varandra
-[] Som användare vill jag kunna ändra ordningen på mina köade låtar så att de spelas upp efter mina önskemål
+[x] Som användare vill jag kunna ändra ordningen på mina köade låtar så att de spelas upp efter mina önskemål
 [] Som användare vill jag kunna välja hur många sökresultat i taget som ska visas efter en sökning.
 
 
@@ -33,7 +33,7 @@ att göra
 lägga till lite felhantering
 
 
-
+updatera current song
 
 spela föregående låt funkar inte helt som det ska. 
 spela playlist

@@ -44,6 +44,9 @@ export default createStore({
     },
     removeFromLastPlayed(state){
       state.playedSongs.pop()
+    },
+    emptyTheQueue(state){
+      state.songQueue = 0
     }
   },
   actions: {
@@ -83,6 +86,10 @@ export default createStore({
     },
     playLastSong({commit}){
       commit('removeFromLastPlayed')
+    },
+    emptyQueue({commit}){
+
+      commit('emptyTheQueue')
     }
   },
     

@@ -1,13 +1,17 @@
 <template>
   <div>
+    <div class="titel-thrashcan">
     <h1>Queued songs</h1>
+    <th><i class="fas fa-trash-alt" @click.prevent="emptyQueue()"></i></th>
+    </div>
+    
     <div class="container table-responsive py-5">
           <table class="">
             <thead class="thead-dark">
               <tr>
                  <th scope="col">Artist</th>
                  <th scope="col">Track</th>
-                 <th scope="col">+/-</th>
+                 <th scope="col1">+/-</th>
                  <th scope="col">Remove</th>
               </tr>
             </thead>
@@ -41,7 +45,9 @@
        let number = this.songQueue.indexOf(item)
        this.songQueue.splice(number, 1)
        this.songQueue.splice(number+1, 0, item)
-
+      },
+      emptyQueue(){
+        this.$store.dispatch("emptyQueue")
       }
     },
   computed:{
@@ -58,9 +64,7 @@
 table{
   border:0;
 }
-/* .fa-minus-circle{
-  font-size:150%;
-} */
+
 i{
   font-size:150%;
 }
@@ -68,5 +72,16 @@ i{
   text-align:center;
 }
 
+table>thead>tr>th>i{
+  font-size: 50%;
+}
+.titel-thrashcan{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.titel-thrashcan>h1{
+  flex-grow: 1
+}
 
 </style>

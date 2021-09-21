@@ -66,13 +66,14 @@ export default {
     play(id){
       window.player.loadVideoById(id)
       window.player.playVideo()
+      this.$store.dispatch('currentSong')
     },
     pause(){
       window.player.pauseVideo()
     },
     stop(){
       window.player.stopVideo()
-      this.emptySong()
+      // this.emptySong()
     },
     emptySong(){
       this.$store.dispatch('emptyCurrentSong')
@@ -80,7 +81,6 @@ export default {
     playNexSongInQueue(id){
       window.player.loadVideoById(id.videoId)
       this.$store.dispatch('playNextSongAndRemoveFromQueu', id)
-      
     },
     playLastSongPlayed(id){
       window.player.loadVideoById(id.videoId)
