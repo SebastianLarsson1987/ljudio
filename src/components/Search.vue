@@ -34,14 +34,11 @@ import router from "../router";
         router.push("/newResult")
       }
     },
-    
-      
-    // computed:{
-    //   song(){
-    //     return this.$store.state.song
-    //   }
-    // }
-    
+    computed:{
+      currentSong(){
+        return this.$store.state.currentSong;
+      }
+    }
   
   }
 </script>
@@ -50,5 +47,10 @@ import router from "../router";
 .input-group{
   margin: 0 1vw 0 1vw;
 }
-
+.form-control{
+  margin-left:2vw;
+}
+.btn-outline-secondary{
+  margin-right: 2vw;
+}
 </style>

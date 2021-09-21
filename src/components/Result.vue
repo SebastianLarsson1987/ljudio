@@ -1,6 +1,6 @@
 <template>
   <div>
-    
+      <h1>Search result</h1>
         <div class="container table-responsive py-5">
           <table class="">
             <thead class="thead-dark">
@@ -15,7 +15,7 @@
                 <tr >
                 <td @click="playSong(item)"><p>{{item.album.name}}</p></td>
                 <td @click="playSong(item)"><p>{{item.name}}</p></td>
-                <td @click="addSongToQueue(item)"><i class="fas fa-plus-circle"></i></td>
+                <td @click="addSongToQueue(item)" class="addSongToQueue"><i class="fas fa-plus-circle"></i></td>
            </tr>
             </tbody>
           </table>
@@ -36,15 +36,11 @@
     methods:{
       playSong(id){
         window.player.loadVideoById(id)
-        // let songPlaying = {name: id.name, artist: id.artist, videoId:id.videoId}
-        // let data = {name: id.name, artist: id.artist, id:id.videoId}
         let credentials = {name: id.name, artist: id.artist.name, videoId:id.videoId}
-        // this.$store.dispatch('playSong', songPlaying)
         this.$store.dispatch('currentSong', credentials)
         },
       addSongToQueue(id){
         let credentials = {videoId: id.videoId, name: id.name, artist: id.artist.name}
-        
         this.$store.dispatch('addSongToQueue', credentials) 
       }
       },
@@ -65,6 +61,12 @@ table{
 tr:hover{
   background-color:black;
   opacity:0.5;
+}
+.fa-plus-circle{
+  font-size:150%;
+}
+.addSongToQueue{
+  text-align:center;
 }
 
 

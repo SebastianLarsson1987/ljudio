@@ -41,8 +41,8 @@ export default{
 </script>
 
 <style>
-body html{
-  margin:0;
+body{
+  margin-top:-2vh !important; 
 }
  .footer{
    position: fixed;

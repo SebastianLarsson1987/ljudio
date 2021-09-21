@@ -36,7 +36,7 @@ export default createStore({
       state.SongArtistAlbum = data
     },
     addSongToPlayedsongs(state, data){
-      state.playedSongs = data.song
+      state.playedSongs = data
     },
     removeSongFromQue(state, data){
         let number = state.songQueue.indexOf(data) 

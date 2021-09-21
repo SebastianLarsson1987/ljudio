@@ -24,16 +24,20 @@
 
               <!-- Modal body -->
               <div class="modal-body">
-                <p>Track</p>
-                <input type="search" :placeholder="this.url + currentSong.name">
+                <h4>Link to song </h4>
+                <p>{{currentSong.artist}} - {{currentSong.name}}</p>
+                <a :href="songUrl+currentSong.videoId" target="_blank">{{songUrl + currentSong.videoId}}</a>
+               
                 <h4>Artist</h4>
-                <p>{{currentSong.artist}}</p>
+                <a :href="artistUrl+currentSong.artist" target="_blank">{{currentSong.artist}}</a>
+                <!-- <p>{{currentSong.artist}}</p> -->
+
               </div>
 
-              <!-- Modal footer -->
+              <!-- Modal footer
               <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-              </div>
+              </div> -->
 
             </div>
           </div>
@@ -54,13 +58,12 @@
 export default {
   data(){
     return{
+      songUrl: "https://www.youtube.com/watch?v=",
+      artistUrl: "https://www.youtube.com/results?search_query="
     }
   },
-
-  
   methods:{
     play(id){
-      // calling global variable
       window.player.loadVideoById(id)
       window.player.playVideo()
     },
@@ -82,9 +85,7 @@ export default {
     playLastSongPlayed(id){
       window.player.loadVideoById(id.videoId)
       this.$store.dispatch('playLastSong')
-
     }
-    
   },
   computed:{
     currentSong(){
