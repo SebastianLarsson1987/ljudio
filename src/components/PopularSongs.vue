@@ -1,19 +1,19 @@
 <template>
   <div class="main">
     <div class="artist1">
-      <img src="https://geo-media.beatport.com/image_size/500x500/8c6899ae-76f5-4ff4-a1b2-008fd9ad1532.jpg" @click.prevent="searchArtist('Andrew Bayer')">
+      <img src="https://geo-media.beatport.com/image_size/500x500/8c6899ae-76f5-4ff4-a1b2-008fd9ad1532.jpg" @click.prevent="fetchArtistById('UC2-3iA9cVO3zmfqBpI_9SAw')">
       <h1>Andrew Bayer</h1>
     </div>
     <div class="artist2">
-      <img src="https://lh3.googleusercontent.com/proxy/gsFr-WNqWheCYmAIjClzAMoJqmU8TxXw_nWH3dx9Y9dJx2QiEhyTfyHQwUC1eXPt8Aef77kg4LawB_MnPBeo285aEMf_t5f13swxQOq6Lqp-aTXPTRHudFUCuuEmr0l1TaQppVO9LXB5RTUz" @click.prevent="searchArtist('Younger Brother')">
+      <img src="https://lh3.googleusercontent.com/proxy/gsFr-WNqWheCYmAIjClzAMoJqmU8TxXw_nWH3dx9Y9dJx2QiEhyTfyHQwUC1eXPt8Aef77kg4LawB_MnPBeo285aEMf_t5f13swxQOq6Lqp-aTXPTRHudFUCuuEmr0l1TaQppVO9LXB5RTUz" @click.prevent="fetchArtistById('UCVHNswitZXE2S_H-qRz-xEQ')">
       <h1>Younger Brother</h1>
     </div>
     <div class="artist3">
-      <img src="https://blogs-images.forbes.com/lisakocay/files/2018/01/AB-Common-Ground-Press-Pic_preview-1200x675.jpeg" @click.prevent="searchArtist('Above & Beyond')">
+      <img src="https://blogs-images.forbes.com/lisakocay/files/2018/01/AB-Common-Ground-Press-Pic_preview-1200x675.jpeg" @click.prevent="fetchArtistById('UCFpQsnvFBNlXi7rwQo6IW7g')">
       <h1>Above & Beyond</h1>
     </div>
     <div class="artist4">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/Eli_%26_Fur_%28cropped%29.jpg" @click.prevent="searchArtist('Elif & Fur')">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/Eli_%26_Fur_%28cropped%29.jpg" @click.prevent="fetchArtistById('UCq_W46vY3v51m-wGqKh29PQ')">
       <h1>Eli & Fur</h1>
     </div>
     <div class="artist5">
@@ -30,9 +30,9 @@
 import router from '../router'
   export default {
     methods:{
-      searchArtist(item){
+      fetchArtistById(item){
          console.log(item)
-         this.$store.dispatch('fetchSong', item)
+         this.$store.dispatch('fetchArtist', item)
          router.push("/result")
        }
     }

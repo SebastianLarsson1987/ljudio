@@ -9,9 +9,13 @@ export default createStore({
     playedSongs:[],
     SongArtistAlbum:[],
     title: "Ljudio",
-    searches:[]
+    searches:[],
+    artist:[]
   },
   mutations: {
+    setArtist(state, data){
+      state.artist = data
+    },
     addToSearches(state, data){
       state.searches.push(data)
     },
@@ -60,6 +64,12 @@ export default createStore({
         let response = await fetch('https://yt-music-api.herokuapp.com/api/yt/search/' +searchTerm);
         let data = await response.json()
         commit('updateAllSongArtistAlbum', data )
+    },
+    async fetchArtist({commit}, browseId){
+      let response = await fetch("https://yt-music-api.herokuapp.com/api/yt/artist/" +browseId)
+      let data = await response.json()
+      console.log(data)
+      commit('setArtist', data)
     },
 
     currentSong({commit}, credentials){

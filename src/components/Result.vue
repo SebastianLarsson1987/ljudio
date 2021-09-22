@@ -1,7 +1,7 @@
 <template>
   <div>
       <h1>Search result</h1>
-        <div class="container table-responsive py-5">
+        <div class="container table-responsive py-2">
           <table class="">
             <thead class="thead-dark">
               <tr>
