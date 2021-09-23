@@ -1,24 +1,16 @@
 # ljudio
+An app created with Vue cli
+Using
+Download the repository git@github.com:SebastianLarsson1987/ljudio.git
 
-## Project setup
+## And run following command to install all necessary dependencies
 ```
 npm install
 ```
 
-### Compiles and hot-reloads for development
+### Run this command to start the devolopment server. Default address is http://localhost:8080/
 ```
 npm run serve
 ```
 
-### Compiles and minifies for production
-```
-npm run build
-```
 
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
