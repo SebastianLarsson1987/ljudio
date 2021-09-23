@@ -1,54 +1,99 @@
 <template>
   <div>
      <div class="top">
-       <h1>Ljudio</h1>
-       <div class="nowPlaying">
-         <p class="currentSong" v-if="!currentSong.length>=1"> Nu spelas: {{currentSong.name}}  {{currentSong.artist}}</p>
-       </div>
         <div class="player-controls">
           <i class="fas fa-play-circle" @click="play()" ></i>
           <i class="fas fa-stop-circle" @click="stop()"></i>
           <i class="fas fa-pause-circle" @click="pause()"></i>
-          <i class="fas fa-chevron-circle-left" @click="playLastSongPlayed(this.playedSongs[this.playedSongs.length - 1])"></i>
+          <!-- <i class="fas fa-chevron-circle-left" @click="playLastSongPlayed(this.playedSongs[this.playedSongs.length - 1])"></i> -->
+           <i class="fas fa-chevron-circle-left" @click="playLastSongPlayed(this.playedSongs[0])"></i>
           <i class="fas fa-chevron-circle-right" @click="playNexSongInQueue(this.songQueue[0])"></i>
-          <router-link to="/queue"><i class="fas fa-chevron-circle-down"></i></router-link>
+          <i class="fas fa-chevron-circle-down" data-toggle="modal" data-target="#myModal"></i>
        </div>
-       <p v-if="songQueue.length>=1">{{songQueue}}</p>
-       <p v-else>{{playedSongs}}</p>
+        
+        <!-- The Modal -->
+        <div class="modal" id="myModal">
+          <div class="modal-dialog modal-dialog-centered" >
+            <div class="modal-content">
+
+              <!-- Modal Header -->
+              <div class="modal-header">
+                <h4 class="modal-title">Share your favorite music</h4>
+                
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+
+              <!-- Modal body -->
+              <div class="modal-body">
+                <h4>Link to song </h4>
+                <p>{{currentSong.artist}} - {{currentSong.name}}</p>
+                <div :v-if="currentSong.length<1">
+                   <a :href="songUrl+currentSong.videoId" target="_blank">{{songUrl + currentSong.videoId}}</a>
+               </div>
+                <h4>Artist</h4>
+                <a :href="artistUrl+currentSong.artist" target="_blank">{{currentSong.artist}}</a>
+                <!-- <p>{{currentSong.artist}}</p> -->
+
+              </div>
+
+              <!-- Modal footer
+              <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+              </div> -->
+
+            </div>
+          </div>
+        </div>
+
+
+       <div class="nowPlaying">
+         <p class="currentSong" v-if="!currentSong.length>=1"> {{currentSong.artist}}  {{currentSong.name}}</p>
+       </div>
+       
       <div id="yt-player"></div>
      </div>
   </div>
 </template>
 
 <script>
+
 export default {
-  
+  data(){
+    return{
+      songUrl: "https://www.youtube.com/watch?v=",
+      artistUrl: "https://www.youtube.com/results?search_query="
+    }
+  },
   methods:{
     play(id){
-      // calling global variable
       window.player.loadVideoById(id)
       window.player.playVideo()
-      
+      this.$store.dispatch('currentSong')
     },
     pause(){
       window.player.pauseVideo()
     },
     stop(){
       window.player.stopVideo()
-      this.emptySong()
+      // this.emptySong()
     },
     emptySong(){
       this.$store.dispatch('emptyCurrentSong')
     },
     playNexSongInQueue(id){
+      
       window.player.loadVideoById(id.videoId)
       this.$store.dispatch('playNextSongAndRemoveFromQueu', id)
-      
+      this.$store.dispatch('currentSong', id)
+
     },
     playLastSongPlayed(id){
+      console.log(id)
       window.player.loadVideoById(id.videoId)
-
-    }
+      this.$store.dispatch('playLastSong')
+      this.$store.dispatch('currentSong', id)
+      
+    },
     
   },
   computed:{
@@ -66,36 +111,67 @@ export default {
 }
 </script>
 <style>
-
+.modal-backdrop.show{
+  z-index:-1;
+  position:fixed;
+  bottom:0;
+}
+.modal-dialog{
+ align-items:center;
+ color:black;
+}
+h4{
+  color:black;
+}
+.modal-body>p{
+  color:black;
+}
 .top{
   display:flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
-  margin-bottom: 3vh;
-  border-bottom: 1px solid black;
-  justify-content:center;
+  margin:0;
   align-items: center;
+  border-top:1px solid grey;
+  width:100vw;
+  height:12vh;
+  background-color:black;
 }
-.top>h1{
-  font-size:200%;
-  margin:0 2vw 2vh 0;
-}
-i{
-  font-size:200%;
-  cursor:pointer;
-  margin-left:1vw;
+.player-controls>i{
+  margin-top: 1vh;
 }
 .currentSong{
   font-weight: bold;
 }
-.nowPlaying{
-  width: 70%;
-  display:flex;
-  flex-direction: row;
+.nowPlaying>p{
+  color:white;
+  text-align: center;
   
 }
 .player-controls{
-  margin:0;
-  
+  display:flex;
+  justify-content:space-evenly;
+  background-color:black;
 }
+@media (max-width: 673px)  { 
+  .player-controls>i{
+  margin-top: 1vh;
+  font-size:400%;
+}
+}
+@media (min-width:1024px){
+  .currentSong{
+    font-size:200%
+  }
+}
+@media (max-width: 493px)  { 
+  .currentSong{
+    font-size:100%
+  }
+   .player-controls>i{
+  margin-top: 1vh;
+  font-size:200%;
+}
+}
+
 </style>

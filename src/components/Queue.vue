@@ -1,14 +1,18 @@
 <template>
   <div>
-    <h1>Här är din kö</h1>
-    <div class="container table-responsive py-5">
-          <table class="table table-bordered table hoover">
+    <div class="titel-thrashcan">
+    <h1>Queued songs</h1>
+    <th><i class="fas fa-trash-alt" @click.prevent="emptyQueue()"></i></th>
+    </div>
+    
+    <div class="">
+          <table class="">
             <thead class="thead-dark">
               <tr>
                  <th scope="col">Artist</th>
-                 <th scope="col">Låt</th>
-                  <th scope="col">VideoID</th>
-                  <th scope="col">Lägg till i kö</th>
+                 <th scope="col">Track</th>
+                 <th scope="col1">+/-</th>
+                 <th scope="col">Remove</th>
               </tr>
             </thead>
 
@@ -16,8 +20,8 @@
                 <tr >
                 <td @click="playSong(item)"><p>{{item.artist}}</p></td>
                 <td @click="playSong(item)"><p>{{item.name}}</p></td>
-                <td><p>{{item.videoId}}</p></td>
-                <td @click="addSongToQueue(item)"><i class="fas fa-plus-circle"></i></td>
+                <td class="arrows"><i class="fas fa-arrow-up" @click.prevent="moveUp(item)"></i><i class="fas fa-arrow-down" @click.prevent="moveDown(item)"></i></td>
+                <td @click="removeSongFromQueue(item)" class="removeFromQueue"><i class="fas fa-minus-circle"></i></td>
            </tr>
             </tbody>
           </table>
@@ -26,16 +30,67 @@
 </template>
 
 <script>
+
   export default {
+    methods:{
+      removeSongFromQueue(item){
+       this.$store.dispatch("removeQueuedSong", item)
+      },
+      moveUp(item){
+        let number = this.songQueue.indexOf(item)
+        this.songQueue.splice(number, 1)
+        this.songQueue.splice(number-1, 0, item)
+      },
+      moveDown(item){
+       let number = this.songQueue.indexOf(item)
+       this.songQueue.splice(number, 1)
+       this.songQueue.splice(number+1, 0, item)
+      },
+      emptyQueue(){
+        this.$store.dispatch("emptyQueue")
+      }
+    },
   computed:{
     songQueue(){
       return this.$store.state.songQueue;
     }
-  }
+  },
+ 
   
   }
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
+table{
+  border:0;
+  width:100%;
+}
+
+i{
+  font-size:150%;
+}
+.removeFromQueue{
+  text-align:center;
+}
+
+table>thead>tr>th>i{
+  font-size: 50%;
+}
+.titel-thrashcan{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.titel-thrashcan>h1{
+  flex-grow: 1
+}
+.arrows{
+  display:flex;
+  font-size: 13px;
+  padding:0;
+}
+p{
+  margin:0;
+}
 
 </style>

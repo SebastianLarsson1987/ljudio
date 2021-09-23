@@ -7,6 +7,7 @@ function onYouTubeIframeAPIReady() {
     height: '0',
     width: '0',
     playerVars:{'autoplay':1, 'controls':1, 'modestbranding':0},
+    
     events: {
       'onStateChange': onPlayerStateChange
     }

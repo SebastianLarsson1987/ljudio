@@ -1,25 +1,24 @@
 <template>
   <div>
-    <form @submit.prevent="welcome()">
-      <div class="md-form mt-0">
-      <label for="searchTerm">Enter your search</label>
-      <input class="form-control" type="text" v-model="searchTerm">
-      <button type="submit" class="searchButton">Search</button>
-      
-      </div>
+    <form @submit.prevent="fetchSong()">
+      <div class="input-group mb-3">
+          <input type="text" class="form-control" placeholder="Search" aria-label="Recipient's username" aria-describedby="basic-addon2" v-model="searchTerm">
+          <div class="input-group-append">
+            <button type="submit" class="btn btn-outline-secondary" >Search</button>
+         </div>
+    </div>
     </form>
-    <h3>{{searchTerm}}</h3>
     
-    <Result/>
-    
+      <router-view></router-view>
   </div>
 </template>
 
 <script>
-import Result from '/src/components/Result.vue'
+import router from "../router";
+
+
   export default {
     components:{
-      Result
     },
     data(){
       return{
@@ -27,24 +26,37 @@ import Result from '/src/components/Result.vue'
       }
     },
     methods:{
-      welcome(){
-        this.$store.dispatch("fetchSong", this.searchTerm);
+      fetchSong(){
+        this.$store.dispatch("fetchAll", this.searchTerm);
+        this.$store.dispatch('addSearchToSearches', this.searchTerm)
+        router.push("/newResult")
       }
     },
-    helloWorld(){
-      this.$store.dispatch("hello")
-    },
-      
-    // computed:{
-    //   song(){
-    //     return this.$store.state.song
-    //   }
-    // }
-    
+    computed:{
+      currentSong(){
+        return this.$store.state.currentSong;
+      },
+      playedSongs(){
+        return this.$store.state.playedSongs;
+      }
+    }
   
   }
 </script>
 
-<style lang="scss" scoped>
-
+<style>
+.input-group{
+  margin: 0 1vw 0 1vw;
+}
+.form-control{
+  margin-left:2vw;
+}
+.btn-outline-secondary{
+  margin-right: 2vw;
+}
+@media (min-width:1024px){
+  .form-control{
+    height:4vh;
+  }
+}
 </style>
