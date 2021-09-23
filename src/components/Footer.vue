@@ -27,9 +27,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
-  
   width:100vw;
-  
   margin:0;
 }
 
@@ -38,13 +36,13 @@ i{
   color:white;
   margin-top: 1vh;;
   margin-bottom: 0;
- 
-
 }
 .footerText{
   display: flex;
+  flex-direction: row;
   justify-content: space-evenly;
   width:100vw;
+  margin:0;
   
 }
 .footerText>p{
@@ -58,6 +56,6 @@ i{
   background-color:black;
   width:100vw;
   height: 12vh;
-  justify-content:center;
+  /* justify-content:center; */
 }
 </style>

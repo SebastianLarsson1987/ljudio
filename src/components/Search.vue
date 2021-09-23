@@ -8,10 +8,8 @@
          </div>
     </div>
     </form>
-     
-        <router-view></router-view>
-      
     
+      <router-view></router-view>
   </div>
 </template>
 
@@ -37,6 +35,9 @@ import router from "../router";
     computed:{
       currentSong(){
         return this.$store.state.currentSong;
+      },
+      playedSongs(){
+        return this.$store.state.playedSongs;
       }
     }
   

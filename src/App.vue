@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="home">
     <div class="header">
       <Header/>
     </div>
@@ -57,4 +57,8 @@ body{
    width:100vw;
    margin-bottom: 24vh;
  }
+.home{
+  width:100vw;
+}
+ 
 </style>

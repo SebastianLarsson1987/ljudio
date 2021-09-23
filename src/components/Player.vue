@@ -5,7 +5,8 @@
           <i class="fas fa-play-circle" @click="play()" ></i>
           <i class="fas fa-stop-circle" @click="stop()"></i>
           <i class="fas fa-pause-circle" @click="pause()"></i>
-          <i class="fas fa-chevron-circle-left" @click="playLastSongPlayed(this.playedSongs[this.playedSongs.length - 1])"></i>
+          <!-- <i class="fas fa-chevron-circle-left" @click="playLastSongPlayed(this.playedSongs[this.playedSongs.length - 1])"></i> -->
+           <i class="fas fa-chevron-circle-left" @click="playLastSongPlayed(this.playedSongs[0])"></i>
           <i class="fas fa-chevron-circle-right" @click="playNexSongInQueue(this.songQueue[0])"></i>
           <i class="fas fa-chevron-circle-down" data-toggle="modal" data-target="#myModal"></i>
        </div>
@@ -26,8 +27,9 @@
               <div class="modal-body">
                 <h4>Link to song </h4>
                 <p>{{currentSong.artist}} - {{currentSong.name}}</p>
-                <a :href="songUrl+currentSong.videoId" target="_blank">{{songUrl + currentSong.videoId}}</a>
-               
+                <div :v-if="currentSong.length<1">
+                   <a :href="songUrl+currentSong.videoId" target="_blank">{{songUrl + currentSong.videoId}}</a>
+               </div>
                 <h4>Artist</h4>
                 <a :href="artistUrl+currentSong.artist" target="_blank">{{currentSong.artist}}</a>
                 <!-- <p>{{currentSong.artist}}</p> -->
@@ -79,13 +81,20 @@ export default {
       this.$store.dispatch('emptyCurrentSong')
     },
     playNexSongInQueue(id){
+      
       window.player.loadVideoById(id.videoId)
       this.$store.dispatch('playNextSongAndRemoveFromQueu', id)
+      this.$store.dispatch('currentSong', id)
+
     },
     playLastSongPlayed(id){
+      console.log(id)
       window.player.loadVideoById(id.videoId)
       this.$store.dispatch('playLastSong')
-    }
+      this.$store.dispatch('currentSong', id)
+      
+    },
+    
   },
   computed:{
     currentSong(){

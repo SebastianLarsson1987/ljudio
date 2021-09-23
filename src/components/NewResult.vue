@@ -7,7 +7,8 @@
        <div v-for="item in SongArtistAlbum.content" :key="item.videoId" class="test">
          <div v-if="item.type=='artist'" class="artistResult" >
             <img :src="item.thumbnails[1].url" class="artist-image" @click.prevent="searchArtist(item.name)">
-            <p >{{item.name}}</p>
+            <p @click="fetchArtistInfo(item)" >{{item.name}}</p>
+            
          </div>
        </div>
     </div>
@@ -22,17 +23,6 @@
        </tbody>
        </table>
     </div>
-
-    <div class="playlists-albums">
-      <h1>Popular playlists and albums</h1>
-       <div v-for="item in SongArtistAlbum.content" :key="item.videoId" >
-         <p v-if="item.type.includes('playlist') || item.type=='album'" class="songResult" @click.prevent="loadPlaylist()">{{item.artist}} {{item.title}}{{item.name}}</p>
-       </div>
-    </div>
-
-  
-
-  
   </div>
 </template>
 
@@ -55,15 +45,9 @@ import router from '../router'
          this.$store.dispatch('fetchSong', item)
          router.push("/result")
        },
-       loadPlaylist(){
-         
-         window.player.loadPlaylist({
-           'list': "VLPL2B005FCD9ECCC00B",
-           'listType': "playlist",
-           'index': 0,
-           'startSeconds': 0,
-           
-         })
+       fetchArtistInfo(item){
+          console.log(item.browseId)
+          this.$store.dispatch('fetchArtistInfo', item.browseId)
        }
 
 
@@ -72,6 +56,9 @@ import router from '../router'
       computed:{
       SongArtistAlbum(){
         return this.$store.state.SongArtistAlbum
+      },
+      setArtistInfo(){
+        return this.$store.state.artistInfo
       }
     },
     

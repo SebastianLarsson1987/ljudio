@@ -1,6 +1,9 @@
 <template>
   <div>
-      <h1>Search result</h1>
+      <div class="artistInfo">
+         {{artist.description}}
+
+      </div>
         <div class="container table-responsive py-2">
           <table class="">
             <thead class="thead-dark">
@@ -13,7 +16,7 @@
 
             <tbody  v-for="item in song.content" :key="item.videoId">
                 <tr >
-                <td @click="playSong(item)"><p>{{item.album.name}}</p></td>
+                <td @click="playSong(item)"><p>{{item.artist.name}}</p></td>
                 <td @click="playSong(item)"><p>{{item.name}}</p></td>
                 <td @click="addSongToQueue(item)" class="addSongToQueue"><i class="fas fa-plus-circle"></i></td>
            </tr>
@@ -31,6 +34,9 @@
     computed:{
       song(){
         return this.$store.state.song
+      },
+      artist(){
+        return this.$store.state.artist
       }
     },
     methods:{
@@ -38,9 +44,10 @@
         window.player.loadVideoById(id)
         let credentials = {name: id.name, artist: id.artist.name, videoId:id.videoId}
         this.$store.dispatch('currentSong', credentials)
+        this.$store.dispatch('addSong', credentials)
         },
       addSongToQueue(id){
-        let credentials = {videoId: id.videoId, name: id.name, artist: id.artist.name}
+        let credentials = {name: id.name, artist: id.artist.name, videoId:id.videoId}
         this.$store.dispatch('addSongToQueue', credentials) 
       }
       },
@@ -68,6 +75,8 @@ tr:hover{
 .addSongToQueue{
   text-align:center;
 }
-
+table>thead>tr>th:nth-child(3){
+  text-align:center;
+}
 
 </style>

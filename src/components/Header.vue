@@ -4,7 +4,9 @@
           <h1 class="headerTitle">{{title}}</h1>
         <i class="fas fa-arrow-right" @click="$router.go(1)"></i>
   </div>
-
+  
+ 
+  
 </template>
 
 <script>
