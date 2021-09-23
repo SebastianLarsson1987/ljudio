@@ -54,4 +54,9 @@ import router from "../router";
 .btn-outline-secondary{
   margin-right: 2vw;
 }
+@media (min-width:1024px){
+  .form-control{
+    height:4vh;
+  }
+}
 </style>

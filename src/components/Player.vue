@@ -153,6 +153,25 @@ h4{
   justify-content:space-evenly;
   background-color:black;
 }
-
+@media (max-width: 673px)  { 
+  .player-controls>i{
+  margin-top: 1vh;
+  font-size:400%;
+}
+}
+@media (min-width:1024px){
+  .currentSong{
+    font-size:200%
+  }
+}
+@media (max-width: 493px)  { 
+  .currentSong{
+    font-size:100%
+  }
+   .player-controls>i{
+  margin-top: 1vh;
+  font-size:200%;
+}
+}
 
 </style>

@@ -28,7 +28,8 @@
   flex-direction: row;
   justify-content: space-evenly;
   width:100vw;
-  margin:0;
+  margin-top:1vh;
+  
 }
 
 i{
@@ -57,5 +58,13 @@ i{
   width:100vw;
   height: 12vh;
   /* justify-content:center; */
+}
+@media (min-width:1024px){
+  .footerText>p{
+  font-size:200%;
+  margin-bottom:2vh;
+
+  
+}
 }
 </style>

@@ -78,5 +78,9 @@ tr:hover{
 table>thead>tr>th:nth-child(3){
   text-align:center;
 }
-
+@media (min-width:1024px){
+  p{
+    font-size: 200%;
+  }
+}
 </style>

@@ -33,16 +33,30 @@
   height: 7vh;
   align-items: center;
 }
-.headerTop>h1{
-  margin-bottom:0;
-  
-}
+
 i{
-  margin:0 2vw 0 2vw;
+  margin:1vh 2vw 0 2vw;
 }
 .headerTitle{
   font-family: "Permanent Marker";
   font-size:250%;
+  margin:0;
 }
-
+@media (min-width: 812px) and (min-height: 375px) { 
+  .headerTop{
+  border-bottom: 1px solid grey;
+  display: flex;
+  justify-content: space-between;
+  height: 10vh;
+  align-items: center;
+}
+.headerTitle{
+  font-family: "Permanent Marker";
+  font-size:250%;
+  margin:0;
+}
+.headerTop>i{
+  font-size: 200%;
+}
+}
 </style>

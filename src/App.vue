@@ -42,7 +42,7 @@ export default{
 
 <style>
 body{
-  margin-top:-2vh !important; 
+  margin-top:-4vh !important;
 }
  .footer{
    position: fixed;
@@ -60,5 +60,22 @@ body{
 .home{
   width:100vw;
 }
+@media (min-width: 1024px)  { 
+  .router{
+    margin-bottom:40vh;
+  }
  
+}
+@media (max-width: 673px)  { 
+  .router{
+    margin-bottom:0vh;
+    
+  }
+}
+@media (min-width: 1200px)  { 
+  .router{
+    margin-bottom:40vh;
+  }
+ 
+}
 </style>

@@ -5,7 +5,7 @@
     <th><i class="fas fa-trash-alt" @click.prevent="emptyQueue()"></i></th>
     </div>
     
-    <div class="container table-responsive py-2">
+    <div class="">
           <table class="">
             <thead class="thead-dark">
               <tr>
@@ -20,7 +20,7 @@
                 <tr >
                 <td @click="playSong(item)"><p>{{item.artist}}</p></td>
                 <td @click="playSong(item)"><p>{{item.name}}</p></td>
-                <td><i class="fas fa-arrow-up" @click.prevent="moveUp(item)"></i><i class="fas fa-arrow-down" @click.prevent="moveDown(item)"></i></td>
+                <td class="arrows"><i class="fas fa-arrow-up" @click.prevent="moveUp(item)"></i><i class="fas fa-arrow-down" @click.prevent="moveDown(item)"></i></td>
                 <td @click="removeSongFromQueue(item)" class="removeFromQueue"><i class="fas fa-minus-circle"></i></td>
            </tr>
             </tbody>
@@ -63,6 +63,7 @@
 <style scoped>
 table{
   border:0;
+  width:100%;
 }
 
 i{
@@ -82,6 +83,14 @@ table>thead>tr>th>i{
 }
 .titel-thrashcan>h1{
   flex-grow: 1
+}
+.arrows{
+  display:flex;
+  font-size: 13px;
+  padding:0;
+}
+p{
+  margin:0;
 }
 
 </style>

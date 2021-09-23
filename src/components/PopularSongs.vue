@@ -18,6 +18,7 @@
       <h1>Eli & Fur</h1>
     </div>
    
+   
     
   </div>
 </template>
@@ -51,6 +52,7 @@ img{
   width:100%;
   margin:0 1vw 0 1vw;
 }
+
 .artist1{
   grid-row: 1/2;
   grid-column:1/2;
@@ -95,8 +97,19 @@ img{
     position: absolute;
     top:0;
     left:1vw;
-    
+    color:lightgray;
 }
-
-
+@media (max-width: 673px)  { 
+  .main{
+    display: flex;
+    flex-direction: column;
+    
+  }
+}
+@media (max-width: 493px)  { 
+    .main{
+    margin-bottom: 60vh;
+  }
+  
+}
 </style>

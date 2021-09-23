@@ -23,6 +23,14 @@
        </tbody>
        </table>
     </div>
+
+     <div class="playlists-albums">
+      <h1>Popular playlists and albums</h1>
+       <div v-for="item in SongArtistAlbum.content" :key="item.videoId" >
+         <p v-if="item.type==='album'" @click="loadPlayList(item)">{{item.artist}} {{item.title}}{{item.name}}</p>
+
+       </div>
+    </div>
   </div>
 </template>
 
@@ -48,10 +56,12 @@ import router from '../router'
        fetchArtistInfo(item){
           console.log(item.browseId)
           this.$store.dispatch('fetchArtistInfo', item.browseId)
+       },
+       loadPlayList(playlistId){
+         let credentials = {name: playlistId.name, artist: playlistId.artist, playlistId:playlistId.playlistId}
+         console.log(credentials)
+         window.player.loadPlaylist({list: credentials.playlistId, index: 0, startSeconds: 0,suggestedQuality: "small"});
        }
-
-
-       
     },
       computed:{
       SongArtistAlbum(){
@@ -85,6 +95,19 @@ import router from '../router'
 .songResult{
   /* margin-left:2vw; */
   margin: 0 0 0 2vw;
+}
+@media (min-width:560px){
+  .artist{
+   column-count:2
+  }
+  .artist-image{
+    width:75%
+  }
+}
+@media (min-width:1024px){
+  p{
+    font-size: 200%;
+  }
 }
 </style>
 
