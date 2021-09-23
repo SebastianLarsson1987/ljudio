@@ -27,7 +27,10 @@
      <div class="playlists-albums">
       <h1>Popular playlists and albums</h1>
        <div v-for="item in SongArtistAlbum.content" :key="item.videoId" >
-         <p v-if="item.type==='album'" @click="loadPlayList(item)">{{item.artist}} {{item.title}}{{item.name}}</p>
+         
+         <p v-if="item.type==='album'" @click="loadPlayList(item)" class="albumResult">{{item.artist}} {{item.title}}{{item.name}}
+           <img :src="item.thumbnails[3].url" class="albumImage">
+         </p>
 
        </div>
     </div>
@@ -77,7 +80,15 @@ import router from '../router'
 </script>
 
 <style>
-
+.albumResult{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+.albumImage{
+  width:20%;
+  
+}
 .artist{
   column-count:2;
 }
